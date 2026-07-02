@@ -2,10 +2,10 @@ return {
     {
         "folke/tokyonight.nvim",
         opts = {
-            transparent = true, 
+            transparent = true,
             styles = {
-                sidebars = "transparent", 
-                floats = "transparent", 
+                sidebars = "transparent",
+                floats = "transparent",
             },
         },
         dependencies = {
@@ -15,21 +15,15 @@ return {
             "SmiteshP/nvim-navic",
         },
         config = function(_, opts)
-            -- 1. 先应用配置 (透明设置)
             require("tokyonight").setup(opts)
-            
-            -- 2. 加载配色方案
-            vim.cmd[[colorscheme tokyonight-storm]]
-            
-            -- 3. 配置其他相关插件
-            require('lualine').setup({
-                options = {
-                    theme = 'tokyonight'
-                },
+            vim.cmd([[colorscheme tokyonight-storm]])
+
+            require("lualine").setup({
+                options = { theme = "tokyonight" },
             })
-            require('barbecue').setup {
-                theme = 'tokyonight',
-            }
-        end
+            require("barbecue").setup({
+                theme = "tokyonight",
+            })
+        end,
     },
 }

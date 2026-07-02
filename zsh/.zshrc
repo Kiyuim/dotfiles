@@ -143,3 +143,17 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Added by Antigravity
 export PATH="/Users/kiyu/.antigravity/antigravity/bin:$PATH"
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+export PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="$HOME/.avm/bin:$PATH"
+
+# Ensure rustup's cargo wrapper is first (supports +toolchain syntax)
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/kiyu/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/kiyu/.local/bin:$PATH"

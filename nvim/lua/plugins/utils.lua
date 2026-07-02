@@ -1,138 +1,59 @@
 return {
+    -- Tmux/vim seamless navigation
     {
         "christoomey/vim-tmux-navigator",
-        lazy = false, 
+        lazy = false,
     },
-    {
-        "rhysd/accelerated-jk",
-        keys = {
-            { "j", "<Plug>(accelerated_jk_gj)" },
-            { "k", "<Plug>(accelerated_jk_gk)" },
-        },
-    },
+    -- Session persistence
     {
         "folke/persistence.nvim",
         keys = {
-            { "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]] },
-            { "<leader>ql", [[<cmd>lua require("persistence").load({ last = true})<cr>]] },
-            { "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]] },
+            { "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], desc = "Load session" },
+            { "<leader>ql", [[<cmd>lua require("persistence").load({ last = true})<cr>]], desc = "Load last session" },
+            { "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], desc = "Stop persistence" },
         },
         config = true,
     },
+    -- Auto pairs (brackets, quotes, etc.)
     {
         "windwp/nvim-autopairs",
         event = "VeryLazy",
-        opts = {
-            enable_check_bracket_line = false,
-        },
+        opts = { enable_check_bracket_line = false },
     },
+    -- Restore cursor position on reopen
     {
         "ethanholz/nvim-lastplace",
         config = true,
     },
+    -- Fast jump (replaces EasyMotion)
     {
         "folke/flash.nvim",
         keys = {
-            {
-                "s",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump()
-                end,
-                desc = "Flash",
-            },
-            {
-                "S",
-                mode = { "n", "o", "x" },
-                function()
-                    require("flash").treesitter()
-                end,
-                desc = "Flash Treesitter",
-            },
-            {
-                "r",
-                mode = "o",
-                function()
-                    require("flash").remote()
-                end,
-                desc = "Remote Flash",
-            },
-            {
-                "R",
-                mode = { "o", "x" },
-                function()
-                    require("flash").treesitter_search()
-                end,
-                desc = "Flash Treesitter Search",
-            },
-            {
-                "<c-s>",
-                mode = { "c" },
-                function()
-                    require("flash").toggle()
-                end,
-                desc = "Toggle Flash Search",
-            },
-        },
-        config = true
-    },
-    {
-        "kamykn/spelunker.vim",
-        event = "VeryLazy",
-        config = function()
-            vim.g.spelunker_check_type = 2
-        end
-    },
-    {
-        "ellisonleao/glow.nvim",
-        event = "VeryLazy",
-        config = true,
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
-        keys = {
-            { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open the neo-tree", mode = { "n", "v" } }
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash Jump" },
+            { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Flash TS Search" },
         },
         config = true,
     },
+    -- Enhanced text objects (ia, aa, etc.)
     {
-        "folke/which-key.nvim",
+        "echasnovski/mini.ai",
         event = "VeryLazy",
         config = true,
     },
-    {
-        'echasnovski/mini.ai',
-        event = "VeryLazy",
-        config = true,
-    },
+    -- Quick commenting (gcc, gc)
     {
         "echasnovski/mini.comment",
         event = "VeryLazy",
         config = true,
     },
+    -- Surround (ys, ds, cs)
     {
-        "s1n7ax/nvim-window-picker",
-        opts = {
-            filter_rules = {
-                include_current_win = true,
-                bo = {
-                    filetype = { "fidget", "neo-tree" }
-                }
-            }
-        },
-        keys = {
-            {
-                "<c-w>p",
-                function()
-                    local window_number = require('window-picker').pick_window()
-                    if window_number then vim.api.nvim_set_current_win(window_number) end
-                end,
-            }
-        }
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
     },
 }

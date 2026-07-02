@@ -8,7 +8,7 @@ map("n", "<A-Left>", "<cmd>vertical resize -2<CR>")
 map("n", "<A-Right>", "<cmd>vertical resize +2<CR>")
 
 -- ===========================================
--- 2. Move Lines 
+-- 2. Move Lines
 -- ===========================================
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("i", "<A-j>", " <Esc>:m .+1<CR>==gi")
@@ -53,7 +53,7 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- Clear search highlight
 map({ "i", "n" }, "<esc>", "<cmd>noh<CR><esc>")
 
--- Save file (Native Vim style)
+-- Save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<CR><esc>")
 
 -- Copy to system clipboard
