@@ -63,6 +63,14 @@ require("lazy").setup({
 				require("nvim-surround").setup({})
 			end,
 		},
+
+		-- [6] Which-key: 显示 leader 快捷键提示
+		{
+			"folke/which-key.nvim",
+			event = "VeryLazy",
+			vscode = true,
+			config = true,
+		},
 	}),
 })
 
@@ -107,6 +115,13 @@ map("n", "<leader>ww", function() vscode.call("workbench.action.focusNextGroup")
 map("n", "<leader>wd", function() vscode.call("workbench.action.closeEditorsInGroup") end)
 map("n", "<leader>wb", function() vscode.call("workbench.action.splitEditorDown") end)
 map("n", "<leader>wr", function() vscode.call("workbench.action.splitEditorRight") end)
+map("n", "<leader>we", function() vscode.call("workbench.action.focusActiveEditorGroup") end, { desc = "Focus editor" })
+
+-- Split navigation (Ctrl+hjkl)
+map("n", "<C-h>", function() vscode.call("workbench.action.focusLeftGroup") end, { desc = "Focus left group" })
+map("n", "<C-j>", function() vscode.call("workbench.action.focusBelowGroup") end, { desc = "Focus below group" })
+map("n", "<C-k>", function() vscode.call("workbench.action.focusAboveGroup") end, { desc = "Focus above group" })
+map("n", "<C-l>", function() vscode.call("workbench.action.focusRightGroup") end, { desc = "Focus right group" })
 
 -- Buffer prev/next
 map("n", "[b", function() vscode.call("workbench.action.previousEditor") end, { desc = "Prev Editor" })
@@ -115,7 +130,10 @@ map("n", "<leader>bc", function() vscode.call("workbench.action.closeActiveEdito
 
 -- LSP / UI actions via VSCode
 map({ "n", "v" }, "<leader>f", function() vscode.call("editor.action.formatDocument") end, { desc = "Format" })
-map("n", "<leader>e", function() vscode.call("workbench.action.toggleSidebarVisibility") end, { desc = "Toggle sidebar" })
+map("n", "<leader>e", function()
+	vscode.call("workbench.action.toggleSidebarVisibility")
+	vscode.call("workbench.action.focusActiveEditorGroup")
+end, { desc = "Toggle sidebar" })
 map("n", "<leader>rn", function() vscode.call("editor.action.rename") end, { desc = "Rename" })
 map({ "n", "v" }, "<leader>ca", function() vscode.call("editor.action.quickFix") end, { desc = "Quick fix" })
 
